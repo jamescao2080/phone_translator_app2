@@ -1,0 +1,55 @@
+MDBoxLayout:
+    orientation: 'vertical'
+    padding: dp(10)
+    spacing: dp(10)
+
+    MDTopAppBar:
+        title: "AI 同声传译"
+        elevation: 4
+        right_action_items: [["dots-vertical", lambda x: app.show_settings()]]
+
+    MDBoxLayout:
+        adaptive_height: True
+        padding: dp(10)
+        spacing: dp(20)
+        
+        MDLabel:
+            text: "源语言:"
+            size_hint_x: None
+            width: dp(60)
+        
+        MDFlatButton:
+            id: src_lang_btn
+            text: "中文 (zh-CN)"
+            on_release: app.select_language('src')
+
+        MDLabel:
+            text: "目标语言:"
+            size_hint_x: None
+            width: dp(60)
+
+        MDFlatButton:
+            id: dest_lang_btn
+            text: "英语 (en)"
+            on_release: app.select_language('dest')
+
+    ScrollView:
+        MDList:
+            id: chat_list
+
+    MDBoxLayout:
+        adaptive_height: True
+        padding: dp(10)
+        
+        MDFloatingActionButton:
+            id: mic_button
+            icon: "microphone"
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {"center_x": .5}
+            on_release: app.toggle_recording()
+
+        MDLabel:
+            id: status_label
+            text: "点击麦克风开始"
+            halign: "center"
+            theme_text_color: "Hint"
